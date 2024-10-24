@@ -1,16 +1,14 @@
 package com.mimddon.schedule.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class User {
-    private Integer id;
-
-    private String email;
-    private String password;
-    private String name;
-    private String phoneNumber;
+    private final String email;
+    private final String password;
+    private final String name;
+    private final String phoneNumber;
 
 }
