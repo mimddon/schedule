@@ -26,14 +26,24 @@ public class UserController {
         return null;
     }
 
+    @GetMapping("/guest/signup")
+    public String showSignupPage() {
+        return "signup";
+    }
+
     @PostMapping("/guest/sign-up")
     public ResponseEntity<String> signUp(User user) {
         userService.signUp(user);
         return ResponseEntity.ok("Sign up successful");
     }
 
-    @PostMapping("/guest/sign-in")
-    public ResponseEntity<String> signIn(@RequestBody SignIn signIn) {
+    @GetMapping("/guest/login")
+    public String showLoginPage() {
+        return "login";
+    }
+
+    @PostMapping("/guest/login")
+    public ResponseEntity<String> signIn(SignIn signIn) {
         userService.signIn(signIn);
         return ResponseEntity.ok("Sign in successful");
     }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link href="/css/output.css" rel="stylesheet"> <!-- Tailwind CSS 파일을 링크 -->
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+<div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-700">로그인</h2>
+    <form th:action="@{/guest/login}" method="post">
+        <div class="mb-4">
+            <label for="username" class="block text-sm font-medium text-gray-700">아이디:</label>
+            <input type="text" id="username" name="username" required
+                   class="mt-1 p-2 border border-gray-300 rounded w-full focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <div class="mb-6">
+            <label for="password" class="block text-sm font-medium text-gray-700">비밀번호:</label>
+            <input type="password" id="password" name="password" required
+                   class="mt-1 p-2 border border-gray-300 rounded w-full focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            로그인
+        </button>
+    </form>
+    <p class="mt-4 text-center text-gray-600">
+        아직 회원이 아니신가요?
+        <a th:href="@{/guest/signup}" class="text-blue-500 hover:text-blue-700">회원가입</a>
+    </p>
+</div>
+</body>
+</html>

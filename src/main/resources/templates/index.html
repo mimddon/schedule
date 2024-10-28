@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>홈페이지</title>
+    <link href="/css/output.css" rel="stylesheet"> <!-- Tailwind CSS 파일을 링크 -->
 </head>
-<body>
-test
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+<div class="text-center">
+    <h1 class="text-3xl font-bold mb-6">테스트 페이지</h1>
+    <div class="space-x-4">
+        <a href="/guest/login" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">로그인</a>
+        <a href="/guest/sign-up" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">회원가입</a>
+    </div>
+</div>
 </body>
 </html>
