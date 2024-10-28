@@ -16,8 +16,12 @@
         </div>
         <div class="mb-4">
             <label for="email" class="block text-sm font-medium text-gray-700">이메일:</label>
-            <input type="email" id="email" name="email" required
-                   class="mt-1 p-2 border border-gray-300 rounded w-full focus:ring-blue-500 focus:border-blue-500" />
+            <div class="flex items-center">
+                <input type="email" id="email" name="email" required
+                       class="mt-1 p-2 border border-gray-300 rounded w-full focus:ring-blue-500 focus:border-blue-500" />
+                <button type="button" id="checkEmailBtn" class="ml-2 bg-gray-500 text-white px-4 py-2 rounded">중복 확인</button>
+            </div>
+            <p id="emailCheckResult" class="text-sm mt-1"></p> <!-- 중복 확인 결과 표시 -->
         </div>
         <div class="mb-4">
             <label for="password" class="block text-sm font-medium text-gray-700">비밀번호:</label>
@@ -39,5 +43,39 @@
         <a th:href="@{/guest/login}" class="text-blue-500 hover:text-blue-700">로그인</a>
     </p>
 </div>
+
+<!-- 이메일 중복 확인 스크립트 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkEmailBtn = document.getElementById('checkEmailBtn');
+        const emailInput = document.getElementById('email');
+        const emailCheckResult = document.getElementById('emailCheckResult');
+
+        checkEmailBtn.addEventListener('click', function () {
+            const email = emailInput.value;
+            if (email) {
+                fetch(`/api/user/check-email?email=${encodeURIComponent(email)}`)
+                    .then(response => response.json())
+                    .then(isEmailExists => {
+                        if (isEmailExists) {
+                            emailCheckResult.textContent = '이미 사용 중인 이메일입니다.';
+                            emailCheckResult.style.color = 'red';
+                        } else {
+                            emailCheckResult.textContent = '사용 가능한 이메일입니다.';
+                            emailCheckResult.style.color = 'green';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        emailCheckResult.textContent = '이메일 확인 중 오류가 발생했습니다.';
+                        emailCheckResult.style.color = 'red';
+                    });
+            } else {
+                emailCheckResult.textContent = '이메일을 입력해주세요.';
+                emailCheckResult.style.color = 'red';
+            }
+        });
+    });
+</script>
 </body>
 </html>

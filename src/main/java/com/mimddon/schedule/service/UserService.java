@@ -1,10 +1,12 @@
 package com.mimddon.schedule.service;
 
-import com.mimddon.schedule.model.SignIn;
-import com.mimddon.schedule.model.User;
+import com.mimddon.schedule.model.Login;
+import com.mimddon.schedule.model.Signup;
 
 public interface UserService {
-    void signIn(SignIn signIn);
+    void login(Login login);
 
-    void signUp(User user);
+    void signUp(Signup user);
+
+    boolean isEmailExists(String email);
 }
